@@ -1,19 +1,12 @@
-﻿// A C# Program for Server
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
 namespace Server
 {
-    internal class Program
+    public class Program
     {
-        // Main Method
-        private static void Main(string[] args)
-        {
-            ExecuteServer();
-        }
-
         public static void ExecuteServer()
         {
             // Establish the local endpoint
@@ -86,6 +79,11 @@ namespace Server
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        private static void Main(string[] args)
+        {
+            ExecuteServer();
         }
     }
 }

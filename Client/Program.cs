@@ -1,6 +1,4 @@
-﻿// A C# program for Client
-
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -9,13 +7,6 @@ namespace Client
 {
     public class Program
     {
-        // Main Method
-        private static void Main(string[] args)
-        {
-            ExecuteClient();
-        }
-
-        // ExecuteClient() Method
         private static void ExecuteClient()
         {
             try
@@ -82,6 +73,11 @@ namespace Client
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        private static void Main(string[] args)
+        {
+            ExecuteClient();
         }
     }
 }
