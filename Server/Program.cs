@@ -7,7 +7,7 @@ namespace Server
 {
     public class Program
     {
-        public static void ExecuteServer()
+        private static void ExecuteServer()
         {
             // Establish the local endpoint
             // for the socket. Dns.GetHostName
@@ -37,7 +37,7 @@ namespace Server
 
                 while (true)
                 {
-                    Console.WriteLine("Waiting connection ... ");
+                    Console.WriteLine("Aguardando conexão... ");
 
                     // Suspend while waiting for
                     // incoming connection Using
@@ -59,9 +59,15 @@ namespace Server
                         if (data.IndexOf("<EOF>") > -1)
                             break;
                     }
+                    Console.WriteLine();
+                    Console.WriteLine("---------------------------------");
+                    Console.WriteLine();
+                    Console.WriteLine("Texto recebido -> {0} ", data.Replace("<EOF>", string.Empty));
+                    Console.WriteLine();
+                    Console.WriteLine("---------------------------------");
+                    Console.WriteLine();
 
-                    Console.WriteLine("Text received -> {0} ", data);
-                    var message = Encoding.UTF8.GetBytes("Test Server");
+                    var message = Encoding.UTF8.GetBytes("Informação recebida com sucesso pelo servidor.");
 
                     // Send a message to Client
                     // using Send() method

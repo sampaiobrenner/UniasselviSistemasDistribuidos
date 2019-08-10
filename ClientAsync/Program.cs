@@ -17,7 +17,7 @@ public class AsynchronousClient
         new ManualResetEvent(false);
 
     // The response from the remote device.
-    private static String response = String.Empty;
+    private static string response = String.Empty;
 
     private static ManualResetEvent sendDone =
                 new ManualResetEvent(false);
@@ -33,7 +33,7 @@ public class AsynchronousClient
         try
         {
             // Retrieve the socket from the state object.
-            Socket client = (Socket)ar.AsyncState;
+            var client = (Socket)ar.AsyncState;
 
             // Complete the connection.
             client.EndConnect(ar);
@@ -55,7 +55,7 @@ public class AsynchronousClient
         try
         {
             // Create the state object.
-            StateObject state = new StateObject();
+            var state = new StateObject();
             state.workSocket = client;
 
             // Begin receiving the data from the remote device.
@@ -74,11 +74,11 @@ public class AsynchronousClient
         {
             // Retrieve the state object and the client socket
             // from the asynchronous state object.
-            StateObject state = (StateObject)ar.AsyncState;
-            Socket client = state.workSocket;
+            var state = (StateObject)ar.AsyncState;
+            var client = state.workSocket;
 
             // Read data from the remote device.
-            int bytesRead = client.EndReceive(ar);
+            var bytesRead = client.EndReceive(ar);
 
             if (bytesRead > 0)
             {
@@ -109,7 +109,7 @@ public class AsynchronousClient
     private static void Send(Socket client, String data)
     {
         // Convert the string data to byte data using ASCII encoding.
-        byte[] byteData = Encoding.ASCII.GetBytes(data);
+        var byteData = Encoding.ASCII.GetBytes(data);
 
         // Begin sending the data to the remote device.
         client.BeginSend(byteData, 0, byteData.Length, 0,
@@ -121,10 +121,10 @@ public class AsynchronousClient
         try
         {
             // Retrieve the socket from the state object.
-            Socket client = (Socket)ar.AsyncState;
+            var client = (Socket)ar.AsyncState;
 
             // Complete sending the data to the remote device.
-            int bytesSent = client.EndSend(ar);
+            var bytesSent = client.EndSend(ar);
             Console.WriteLine("Sent {0} bytes to server.", bytesSent);
 
             // Signal that all bytes have been sent.
@@ -144,12 +144,12 @@ public class AsynchronousClient
             // Establish the remote endpoint for the socket.
             // The name of the
             // remote device is "host.contoso.com".
-            IPHostEntry ipHostInfo = Dns.GetHostEntry("host.contoso.com");
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
+            var ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
+            var ipAddress = ipHostInfo.AddressList[0];
+            var remoteEP = new IPEndPoint(ipAddress, port);
 
             // Create a TCP/IP socket.
-            Socket client = new Socket(ipAddress.AddressFamily,
+            var client = new Socket(ipAddress.AddressFamily,
                 SocketType.Stream, ProtocolType.Tcp);
 
             // Connect to the remote endpoint.
