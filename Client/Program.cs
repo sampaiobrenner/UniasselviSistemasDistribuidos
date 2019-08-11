@@ -47,7 +47,7 @@ namespace Client
                     // received, that we'll use to
                     // convert them to string
                     var byteRecv = sender.Receive(messageReceived);
-                    Console.WriteLine("Message from Server -> {0}", Encoding.UTF8.GetString(messageReceived, 0, byteRecv));
+                    Console.WriteLine("Mensagem recebida do servidor -> {0}", Encoding.UTF8.GetString(messageReceived, 0, byteRecv));
 
                     // Close Socket using
                     // the method Close()
